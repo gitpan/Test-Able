@@ -1,19 +1,20 @@
 package Foo;
 
-use Moose;
-BEGIN { extends qw( Bar ); }
+use Test::Able;
 use Test::More;
 
-sub startup_foo1 : Startup( 1 ) { ok( 1 ); }
+extends qw( Bar );
 
-sub setup_foo1 : Setup {}
+startup plan => 1, startup_foo1 => sub { ok( 1 ); };
 
-sub test_foo1 : Test( 2 ) { ok( 1 ) for 1 .. 2; }
+setup setup_foo1 => sub {};
 
-sub teardown_foo1 : Teardown {}
+test plan => 2, test_foo1 => sub { ok( 1 ) for 1 .. 2; };
 
-sub shutdown_foo1 : Shutdown( 3 ) { ok( 1 ) for 1 .. 3; }
+teardown teardown_foo1 => sub {};
 
-sub other_foo1 : Startup {}
+shutdown plan => 3, shutdown_foo1 => sub { ok( 1 ) for 1 .. 3; };
+
+startup other_foo1 => sub {};
 
 1;

@@ -11,29 +11,11 @@ package Test::Able::Cookbook;
 =item Dumping execution plan
 
  $t->meta->dry_run( 1 );
- $t->meta->run_tests;
+ $t->run_tests;
 
 Does everything but call the test (startup/setup/test/teardown/shutdown)
 methods.  And part of "everything" is logging the execution plan with
 $t->meta->log.
-
-=item Define and Run in same file
-
-package MyTests;
-
-use Moose;
-BEGIN { extend 'Test::Able'; }
-
-sub test {}
-
-...
-
-MyTests->import;
-MyTests->run_tests;
-
-Normally a test class will be defined in one file and run in another.  But
-sometimes its nice to do it all in one place.  The only non-obvious part is
-that Test::Able's import method must be run.
 
 =back
 
@@ -97,11 +79,11 @@ will then persuade Test::Builder to print the plan at the end.
 
 =item Setting method plan during test run
 
- sub test_method {
+ test test_method => sub {
      ...
      $self->current_test_method->plan( $new_plan );
      ...
- }
+ };
 
 This will force the whole plan to be recalculated.
 
@@ -123,7 +105,7 @@ This will force the whole plan to be recalculated.
     return;
  }
 
- sub test_on_x_and_y_and_z {
+ test test_on_x_and_y_and_z => sub {
      my ( $self, ) = @_;
 
      @x = qw( 1 2 3 );
@@ -147,14 +129,14 @@ This will force the whole plan to be recalculated.
      }
 
      return;
- }
+ };
 
 Since we're running the setup and teardown method lists explicitly in the loop
 it would be nice to have the option of not running them implicitly (the normal
-behavior - see L<Test::Able::Object/run_methods> ).  Setting do_setup the
-do_teardown above to false is an easy way to accomplish just that.  Notice, as
-illustrated in this recipe, that the method lists can be accessed as a
-HashRef.
+behavior - see L<Test::Able::Role::Meta::Class/run_methods> ).  Setting
+do_setup the do_teardown above to false is an easy way to accomplish just
+that.  Notice, as illustrated in this recipe, that the method lists can be
+accessed as a HashRef.
 
 =back
 
