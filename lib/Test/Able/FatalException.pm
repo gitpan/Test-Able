@@ -4,6 +4,8 @@ use Moose;
 use overload
   '""' => sub { return shift->message; },
   fallback => 1;
+use strict;
+use warnings;
 
 =head1 NAME
 
@@ -11,7 +13,7 @@ Test::Able::FatalException - Fatal Exception Class
 
 =head1 SYNOPSIS
 
-Test::Able::FatalException->throw->( 'get me outta here - for real!' );
+ Test::Able::FatalException->throw->( 'get me outta here - for real!' );
 
 =head1 DESCRIPTION
 

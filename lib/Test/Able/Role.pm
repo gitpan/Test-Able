@@ -3,7 +3,9 @@ package Test::Able::Role;
 use Moose::Role;
 use Moose::Exporter;
 use Moose::Util::MetaRole;
+use strict;
 use Test::Able::Role::Meta::Method;
+use warnings;
 
 =head1 NAME
 
@@ -11,11 +13,11 @@ Test::Able::Role -The Test::Able Role
 
 =head1 SYNOPSIS
 
-package MyTest::SomeRole;
+ package MyTest::SomeRole;
 
-use Test::Able::Role;
+ use Test::Able::Role;
 
-test some_test => sub {};
+ test some_test => sub {};
 
 =head1 DESCRIPTION
 

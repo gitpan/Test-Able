@@ -4,9 +4,11 @@ use 5.008;
 use Moose;
 use Moose::Exporter;
 use Moose::Util::MetaRole;
+use strict;
 use Test::Able::Object;
 use Test::Able::Role::Meta::Class;
 use Test::Able::Role::Meta::Method;
+use warnings;
 
 =head1 NAME
 
@@ -14,11 +16,11 @@ Test::Able - xUnit with Moose
 
 =head1 VERSION
 
-0.06
+0.07
 
 =cut
 
-our $VERSION = '0.06';
+our $VERSION = '0.07';
 
 =head1 SYNOPSIS
 
